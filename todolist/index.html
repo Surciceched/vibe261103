@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+  <meta name="color-scheme" content="light dark">
+  <meta name="description" content="오늘 할 일을 적고, 체크하고, 진행 상황을 확인하는 페이지">
+  <title>오늘의 할일</title>
+  <link rel="icon" href="data:,">
+  <script>
+    // 첫 화면이 깜빡이지 않도록 저장된 테마를 CSS 적용 전에 반영한다.
+    try {
+      var theme = JSON.parse(localStorage.getItem("today-todo:v1")).settings.theme;
+      if (theme === "light" || theme === "dark") document.documentElement.dataset.theme = theme;
+    } catch (e) {}
+  </script>
+  <link rel="stylesheet" href="css/style.css">
+  <script type="module" src="js/app.js"></script>
+</head>
+<body>
+  <main class="app">
+    <header class="header">
+      <div class="header__top">
+        <h1>오늘의 할일</h1>
+        <button type="button" class="button button--ghost" id="theme-toggle"></button>
+      </div>
+      <p class="header__date" id="today-date"></p>
+      <div class="progress" id="progress" hidden>
+        <div class="progress__track" id="progress-bar" role="progressbar" aria-label="오늘 할일 진행률" aria-valuemin="0">
+          <div class="progress__fill" id="progress-fill"></div>
+        </div>
+        <span class="progress__label" id="progress-label"></span>
+      </div>
+    </header>
+
+    <p class="banner banner--warning" id="save-warning" role="alert" hidden>저장하지 못했어요. 브라우저 저장 공간을 확인해 주세요</p>
+
+    <section class="banner" id="carryover" aria-label="이전 할일" hidden>
+      <p id="carryover-message"></p>
+      <div class="banner__actions">
+        <button type="button" class="button button--primary" id="carryover-accept">오늘로 가져오기</button>
+        <button type="button" class="button" id="carryover-discard">버리기</button>
+      </div>
+    </section>
+
+    <form class="add-form" id="add-form" autocomplete="off">
+      <label class="sr-only" for="add-input">새 할일</label>
+      <input class="input" id="add-input" type="text" maxlength="200" placeholder="할일을 입력하세요" enterkeyhint="done">
+      <button type="submit" class="button button--primary">추가</button>
+    </form>
+
+    <p class="message" id="empty-state" hidden>오늘 할 일을 추가해 보세요</p>
+    <p class="message message--done" id="all-done" hidden>오늘 할 일을 모두 끝냈어요</p>
+
+    <ul class="todo-list" id="active-list" aria-label="남은 할일"></ul>
+
+    <section class="completed" id="completed-section" aria-label="완료한 할일" hidden>
+      <div class="completed__header">
+        <button type="button" class="completed__toggle" id="completed-toggle" aria-controls="completed-list">
+          <svg class="icon completed__chevron" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg>
+          <span id="completed-count"></span>
+        </button>
+        <button type="button" class="button button--ghost" id="clear-completed">완료 항목 지우기</button>
+      </div>
+      <ul class="todo-list" id="completed-list" aria-label="완료한 할일 목록"></ul>
+    </section>
+
+    <footer class="footer">이 브라우저에만 저장됩니다</footer>
+  </main>
+
+  <div class="toast" id="toast" role="status" hidden>
+    <span id="toast-message"></span>
+    <button type="button" class="toast__action" id="toast-undo">되돌리기</button>
+  </div>
+  <div class="sr-only" id="live" aria-live="polite"></div>
+
+  <template id="todo-template">
+    <li class="todo">
+      <span class="todo__handle" draggable="true" title="끌어서 순서 변경" aria-hidden="true">
+        <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="6" r="1.5"/><circle cx="15" cy="6" r="1.5"/><circle cx="9" cy="12" r="1.5"/><circle cx="15" cy="12" r="1.5"/><circle cx="9" cy="18" r="1.5"/><circle cx="15" cy="18" r="1.5"/></svg>
+      </span>
+      <label class="todo__check"><input type="checkbox" data-role="toggle"></label>
+      <div class="todo__body">
+        <span class="todo__text"></span>
+        <input class="input todo__edit" type="text" maxlength="200" data-role="edit-input" aria-label="할일 수정" enterkeyhint="done" hidden>
+      </div>
+      <div class="todo__actions">
+        <button type="button" class="icon-button" data-role="up" title="위로 이동"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 15 6-6 6 6"/></svg></button>
+        <button type="button" class="icon-button" data-role="down" title="아래로 이동"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="m6 9 6 6 6-6"/></svg></button>
+        <button type="button" class="icon-button" data-role="edit" title="수정"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 20h4L19 9l-4-4L4 16v4Z"/><path d="m13 7 4 4"/></svg></button>
+        <button type="button" class="icon-button icon-button--danger" data-role="delete" title="삭제"><svg class="icon" viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16"/><path d="M9 7V4h6v3"/><path d="m6 7 1 13h10l1-13"/></svg></button>
+      </div>
+    </li>
+  </template>
+</body>
+</html>

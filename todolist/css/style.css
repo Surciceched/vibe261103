@@ -1,0 +1,442 @@
+:root {
+  color-scheme: light;
+  --bg: #f6f5f2;
+  --surface: #ffffff;
+  --text: #1f2328;
+  --muted: #5c636b;
+  --border: #dcdad4;
+  --control: #868b92;
+  --accent: #2f5fd0;
+  --on-accent: #ffffff;
+  --track: #e6e4de;
+  --danger: #b3261e;
+  --warning-bg: #fdeceb;
+  --warning-text: #8c1d18;
+  --done: #1d7044;
+  --toast-bg: #24282d;
+  --toast-text: #f4f5f6;
+  --toast-action: #a9c4ff;
+  --control-size: 44px;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    color-scheme: dark;
+    --bg: #15171a;
+    --surface: #1e2125;
+    --text: #e8eaed;
+    --muted: #a3a9b0;
+    --border: #33373c;
+    --control: #7c828a;
+    --accent: #8ab0ff;
+    --on-accent: #10131a;
+    --track: #33373c;
+    --danger: #ff9a8f;
+    --warning-bg: #3a1f1d;
+    --warning-text: #ffc9c3;
+    --done: #7fd6a4;
+    --toast-bg: #eceef0;
+    --toast-text: #1f2328;
+    --toast-action: #2450b8;
+  }
+}
+
+:root[data-theme="dark"] {
+  color-scheme: dark;
+  --bg: #15171a;
+  --surface: #1e2125;
+  --text: #e8eaed;
+  --muted: #a3a9b0;
+  --border: #33373c;
+  --control: #7c828a;
+  --accent: #8ab0ff;
+  --on-accent: #10131a;
+  --track: #33373c;
+  --danger: #ff9a8f;
+  --warning-bg: #3a1f1d;
+  --warning-text: #ffc9c3;
+  --done: #7fd6a4;
+  --toast-bg: #eceef0;
+  --toast-text: #1f2328;
+  --toast-action: #2450b8;
+}
+
+/* 마우스 환경에서만 조작 요소를 줄인다. 터치 환경은 44px을 유지한다. */
+@media (hover: hover) and (pointer: fine) {
+  :root { --control-size: 32px; }
+}
+
+*, *::before, *::after { box-sizing: border-box; }
+
+[hidden] { display: none !important; }
+
+body {
+  margin: 0;
+  background: var(--bg);
+  color: var(--text);
+  font-family: system-ui, -apple-system, "Segoe UI", "Malgun Gothic", "Apple SD Gothic Neo", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  word-break: keep-all;
+}
+
+h1, p, ul { margin: 0; padding: 0; }
+ul { list-style: none; }
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+
+:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+}
+
+.icon {
+  width: 20px;
+  height: 20px;
+  fill: none;
+  stroke: currentColor;
+  stroke-width: 2;
+  stroke-linecap: round;
+  stroke-linejoin: round;
+}
+
+.app {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  width: 100%;
+  max-width: 560px;
+  margin: 0 auto;
+  padding: 32px 16px calc(96px + env(safe-area-inset-bottom));
+}
+
+/* 헤더 */
+.header__top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 12px;
+}
+
+h1 {
+  font-size: 1.75rem;
+  line-height: 1.25;
+  font-weight: 700;
+}
+
+.header__date { margin-top: 2px; color: var(--muted); }
+
+.progress {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-top: 16px;
+}
+
+.progress__track {
+  flex: 1;
+  height: 8px;
+  overflow: hidden;
+  border-radius: 4px;
+  background: var(--track);
+}
+
+.progress__fill {
+  width: 0;
+  height: 100%;
+  border-radius: 4px;
+  background: var(--accent);
+  transition: width 200ms ease;
+}
+
+.progress__label {
+  flex: none;
+  color: var(--muted);
+  font-size: 0.875rem;
+  font-variant-numeric: tabular-nums;
+}
+
+/* 버튼 */
+.button {
+  flex: none;
+  min-height: 44px;
+  padding: 0 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  white-space: nowrap;
+}
+
+.button:hover { border-color: var(--control); }
+
+.button--primary {
+  border-color: var(--accent);
+  background: var(--accent);
+  color: var(--on-accent);
+  font-weight: 600;
+}
+
+.button--primary:hover { border-color: var(--accent); filter: brightness(1.1); }
+
+.button--ghost {
+  padding: 0 10px;
+  border-color: transparent;
+  background: transparent;
+  color: var(--muted);
+  font-size: 0.875rem;
+}
+
+.icon-button {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: var(--control-size);
+  height: var(--control-size);
+  padding: 0;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+}
+
+.icon-button:hover { background: var(--track); color: var(--text); }
+.icon-button--danger:hover { color: var(--danger); }
+
+.icon-button[aria-disabled="true"] {
+  background: transparent;
+  color: var(--muted);
+  opacity: 0.35;
+  cursor: default;
+}
+
+/* 입력 */
+.input {
+  width: 100%;
+  min-width: 0;
+  min-height: 44px;
+  padding: 0 12px;
+  border: 1px solid var(--control);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.input::placeholder { color: var(--muted); opacity: 1; }
+
+.add-form { display: flex; gap: 8px; }
+
+/* 안내 */
+.banner {
+  padding: 12px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.banner--warning {
+  border-color: transparent;
+  background: var(--warning-bg);
+  color: var(--warning-text);
+}
+
+.banner__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  margin-top: 10px;
+}
+
+.message {
+  padding: 24px 16px;
+  color: var(--muted);
+  text-align: center;
+}
+
+.message--done {
+  color: var(--done);
+  font-weight: 600;
+  animation: pop 400ms ease-out;
+}
+
+@keyframes pop {
+  from { opacity: 0; transform: scale(0.92); }
+  to { opacity: 1; transform: scale(1); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .message--done { animation: none; }
+  .progress__fill { transition: none; }
+}
+
+/* 목록 */
+.todo-list {
+  overflow: hidden;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+}
+
+.todo-list:empty { display: none; }
+
+.todo {
+  display: grid;
+  grid-template-columns: auto auto minmax(0, 1fr) auto;
+  align-items: start;
+  min-height: 52px;
+  padding: 4px 8px 4px 4px;
+}
+
+.todo + .todo { border-top: 1px solid var(--border); }
+
+.todo__handle {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 44px;
+  color: var(--control);
+  cursor: grab;
+}
+
+.todo__handle .icon { fill: currentColor; stroke: none; }
+
+.todo--static .todo__handle { visibility: hidden; }
+
+/* 터치 환경의 이동은 위/아래 버튼으로 한다. */
+@media (hover: none), (pointer: coarse) {
+  .todo__handle { visibility: hidden; width: 4px; }
+}
+
+.todo__check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  cursor: pointer;
+}
+
+.todo__check input {
+  width: 20px;
+  height: 20px;
+  margin: 0;
+  accent-color: var(--accent);
+  cursor: pointer;
+}
+
+/* 첫 줄이 44px 높이의 체크박스와 같은 선에 오도록 위아래 여백을 준다. */
+.todo__body { min-width: 0; padding: 10px 0; }
+.todo--editing .todo__body { padding: 0; }
+
+.todo__text {
+  display: block;
+  overflow-wrap: anywhere;
+}
+
+.todo--done .todo__text {
+  color: var(--muted);
+  text-decoration: line-through;
+}
+
+.todo__actions {
+  display: flex;
+  align-items: center;
+  min-height: 44px;
+  margin-left: 4px;
+}
+
+.todo--editing { grid-template-columns: auto auto minmax(0, 1fr); }
+.todo--editing .todo__actions { display: none; }
+
+.todo--dragging { opacity: 0.45; }
+.todo--drop-before { box-shadow: inset 0 2px 0 var(--accent); }
+.todo--drop-after { box-shadow: inset 0 -2px 0 var(--accent); }
+
+/* 넓은 마우스 환경에서는 행을 가리킬 때만 조작 버튼을 보여 준다. */
+@media (hover: hover) and (pointer: fine) and (min-width: 521px) {
+  .todo__actions { opacity: 0; }
+  .todo:hover .todo__actions,
+  .todo:has(:focus-visible) .todo__actions { opacity: 1; }
+}
+
+/* 좁은 화면에서는 본문 폭을 확보하기 위해 버튼을 다음 줄로 내린다. */
+@media (max-width: 520px) {
+  .todo { grid-template-columns: auto auto minmax(0, 1fr); }
+  .todo__actions {
+    grid-column: 2 / -1;
+    justify-content: flex-end;
+    margin-left: 0;
+  }
+}
+
+/* 완료 항목 */
+.completed { display: flex; flex-direction: column; gap: 8px; }
+
+.completed__header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+}
+
+.completed__toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 4px;
+  min-height: 44px;
+  padding: 0 8px 0 4px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--muted);
+  font-weight: 600;
+}
+
+.completed__chevron { transition: transform 150ms ease; }
+.completed__toggle[aria-expanded="false"] .completed__chevron { transform: rotate(-90deg); }
+
+.footer {
+  padding-top: 8px;
+  color: var(--muted);
+  font-size: 0.8125rem;
+  text-align: center;
+}
+
+/* 토스트 */
+.toast {
+  position: fixed;
+  left: 50%;
+  bottom: calc(20px + env(safe-area-inset-bottom));
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 8px;
+  width: min(420px, calc(100vw - 32px));
+  padding: 4px 8px 4px 16px;
+  border-radius: 8px;
+  background: var(--toast-bg);
+  color: var(--toast-text);
+  box-shadow: 0 6px 20px rgb(0 0 0 / 0.25);
+  transform: translateX(-50%);
+}
+
+.toast__action {
+  flex: none;
+  min-height: 44px;
+  padding: 0 10px;
+  border: 0;
+  border-radius: 6px;
+  background: transparent;
+  color: var(--toast-action);
+  font-weight: 600;
+}
