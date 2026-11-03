@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="ko" data-theme="dark">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>페이지를 찾을 수 없습니다 — 홍길동</title>
+<meta name="description" content="요청한 페이지를 찾을 수 없습니다.">
+<meta name="robots" content="noindex">
+<link rel="icon" href="assets/favicon.svg" type="image/svg+xml">
+<link rel="stylesheet" href="css/style.css">
+<script>
+(function () {
+  try {
+    var saved = localStorage.getItem("theme");
+    var light = window.matchMedia("(prefers-color-scheme: light)").matches;
+    document.documentElement.setAttribute("data-theme", saved || (light ? "light" : "dark"));
+  } catch (e) {}
+})();
+</script>
+<style>
+  .notfound { display: grid; place-items: center; min-height: 100svh; text-align: center; }
+  .notfound-code {
+    margin-bottom: var(--sp-3);
+    color: var(--accent);
+    font-family: var(--font-mono); font-size: clamp(3.5rem, 14vw, 7rem);
+    font-weight: 700; line-height: 1;
+  }
+  .notfound h1 { margin-bottom: var(--sp-4); font-size: clamp(1.375rem, 4vw, 2rem); }
+  .notfound p { max-width: 30rem; margin-inline: auto; color: var(--text-dim); }
+  .notfound-actions { display: flex; flex-wrap: wrap; gap: var(--sp-3); justify-content: center; margin-top: var(--sp-6); }
+</style>
+</head>
+<body>
+<main class="notfound">
+  <div class="wrap">
+    <p class="notfound-code">404</p>
+    <h1>페이지를 찾을 수 없습니다</h1>
+    <p>주소가 바뀌었거나 삭제된 페이지일 수 있습니다. 홈으로 돌아가 다시 찾아보세요.</p>
+    <div class="notfound-actions">
+      <a class="btn btn-primary" href="/">홈으로</a>
+      <a class="btn btn-outline" href="mailto:mami4226@naver.com">문의하기</a>
+    </div>
+  </div>
+</main>
+</body>
+</html>

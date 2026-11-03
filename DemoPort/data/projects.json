@@ -1,0 +1,76 @@
+[
+  {
+    "id": "habit-tracker-ios",
+    "title": "Habit Tracker (iOS)",
+    "category": "ios",
+    "summary": "습관을 하루 단위로 기록하고 주간 달성률을 보여주는 iOS 앱. 오프라인 우선으로 동작하며 위젯을 지원합니다.",
+    "role": "기획·디자인·개발·App Store 배포 전 과정 단독 수행",
+    "tech": ["Swift", "SwiftUI", "Core Data", "WidgetKit"],
+    "thumbnail": "assets/thumb-ios.svg",
+    "links": [
+      { "label": "App Store", "url": "https://apps.apple.com/app/id000000000" },
+      { "label": "GitHub", "url": "https://github.com/your-id/habit-tracker" }
+    ]
+  },
+  {
+    "id": "price-watch-api",
+    "title": "Price Watch API",
+    "category": "python",
+    "summary": "여러 쇼핑몰의 가격 변동을 수집해 이력과 알림 기준을 제공하는 REST API. 일일 50만 건을 배치로 적재합니다.",
+    "role": "백엔드 설계 및 수집 파이프라인 전담",
+    "tech": ["Python", "FastAPI", "PostgreSQL", "APScheduler", "pytest"],
+    "thumbnail": "assets/thumb-python.svg",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/your-id/price-watch-api" }
+    ]
+  },
+  {
+    "id": "office-automation",
+    "title": "사무 자동화 스크립트 모음",
+    "category": "python",
+    "summary": "엑셀 정산 대조, 메일 발송, 보고서 생성을 자동화한 스크립트 묶음. 월 결산 수작업을 8시간에서 30분으로 줄였습니다.",
+    "role": "요구사항 정리부터 배포·운영 교육까지 담당",
+    "tech": ["Python", "pandas", "openpyxl", "Typer"],
+    "thumbnail": "assets/thumb-python.svg",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/your-id/office-automation" }
+    ]
+  },
+  {
+    "id": "studio-landing",
+    "title": "스튜디오 랜딩 페이지",
+    "category": "web",
+    "summary": "프레임워크 없이 HTML5·CSS·바닐라 JS로 구현한 반응형 랜딩 페이지. 모바일 Lighthouse 성능 98점.",
+    "role": "마크업·스타일·인터랙션 구현 및 배포",
+    "tech": ["HTML5", "CSS3", "JavaScript", "Netlify"],
+    "thumbnail": "assets/thumb-web.svg",
+    "links": [
+      { "label": "데모", "url": "https://example.com/studio" },
+      { "label": "GitHub", "url": "https://github.com/your-id/studio-landing" }
+    ]
+  },
+  {
+    "id": "reading-log",
+    "title": "Reading Log (iOS + API)",
+    "category": "ios",
+    "summary": "독서 기록 앱과 동기화 서버. 앱은 SwiftUI, 서버는 FastAPI로 만들어 기기 간 동기화를 지원합니다.",
+    "role": "앱·서버 양쪽 개발 및 동기화 규칙 설계",
+    "tech": ["Swift", "SwiftUI", "FastAPI", "SQLite"],
+    "thumbnail": "assets/thumb-ios.svg",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/your-id/reading-log" }
+    ]
+  },
+  {
+    "id": "dashboard-ui",
+    "title": "운영 대시보드 UI",
+    "category": "web",
+    "summary": "사내 운영 지표를 보여주는 대시보드. 테이블 가상 스크롤과 SVG 차트를 직접 구현해 외부 의존성을 없앴습니다.",
+    "role": "프런트엔드 전담, 접근성 기준 수립",
+    "tech": ["HTML5", "CSS Grid", "JavaScript", "SVG"],
+    "thumbnail": "assets/thumb-web.svg",
+    "links": [
+      { "label": "GitHub", "url": "https://github.com/your-id/dashboard-ui" }
+    ]
+  }
+]
