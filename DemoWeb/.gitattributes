@@ -1,0 +1,22 @@
+# 텍스트 파일은 저장소에 LF로 보관한다 (작업 환경의 줄바꿈과 무관하게 일정)
+.gitattributes text eol=lf
+.gitignore     text eol=lf
+.env.example   text eol=lf
+*.ts    text eol=lf
+*.tsx   text eol=lf
+*.mts   text eol=lf
+*.mjs   text eol=lf
+*.js    text eol=lf
+*.json  text eol=lf
+*.css   text eol=lf
+*.sql   text eol=lf
+*.svg   text eol=lf
+*.md    text eol=lf
+
+# 바이너리: 줄바꿈 변환 금지
+*.ico   binary
+*.png   binary
+*.jpg   binary
+*.webp  binary
+*.woff  binary
+*.woff2 binary
